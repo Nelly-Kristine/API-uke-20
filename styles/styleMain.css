@@ -5,7 +5,7 @@
 body{
     padding: .5rem;
     font-family: 'Roboto', sans-serif;
-    background-color: #ffff;
+    background-color: burlywood;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
@@ -13,14 +13,13 @@ body{
     "header header header"
     "sidebar main main"
     "footer footer footer";
-
 }
 .header_main{
     grid-area: header;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
-    background-color: #d8d8d8;
+    background-color: burlywood;
     align-items: center;
 }
 .header_main #menu_header{
@@ -95,22 +94,17 @@ body{
 
 }
 .main_main #map1{
-   
-
     height: 40%;
     width: auto;
     margin-left: 10%;
     aspect-ratio: 1/1;
-
-    
-
 }
 .main_main #map iframe{
     width: 50%;
     height: auto;
     aspect-ratio: 1;
 }
-#sidebar_options #btn{
+#sidebar_options #myButton{
     padding: 1rem;
     width:10rem;
     height: auto;
