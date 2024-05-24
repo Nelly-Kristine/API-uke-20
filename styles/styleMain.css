@@ -19,7 +19,7 @@ body{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
-    background-color: burlywood;
+    background-color: #cb9856;
     align-items: center;
 }
 .header_main #menu_header{

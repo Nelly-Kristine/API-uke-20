@@ -21,6 +21,14 @@ async function show_me() {
     // Her venter vi på at funksjonen skal bli ferdig. Når den er ferdig ber vi om å få resultat i JSON
     let data = await response.json();
 
+    console.log(data);
+    //
+    map.eachLayer(function (layer) {
+        if (layer instanceof L.Marker) {
+            map.removeLayer(layer)
+        }
+    });
+
     // Nå har vi fått svarer fra serveren i format av JSON og går igjennom alle breweries og legger på kartet
     data.forEach(element => {
         //console.log(element.latitude);
@@ -31,9 +39,11 @@ async function show_me() {
             let marker = L.marker([element.latitude, element.longitude]).addTo(map);
             // BindPopup funksjonen legger til en liten tekstvindu når brukeren klikker på markøren.
             marker.bindPopup(`
-            <b>${element.name}</b><br>
-            ${element.city}<br>
+            <h3>Company name: </h3><b>${element.name}</b>
+            <h3>City: </h3>${element.city}<br> 
+            <h3>Address: </h3>${element.address_1}<br>
             <a href="${element.website_url}">${element.website_url}</a>`).openPopup();
+            
         }
     });
 }
