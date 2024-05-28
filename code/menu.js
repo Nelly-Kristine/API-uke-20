@@ -11,18 +11,18 @@ const tiles = L.tileLayer(tileURL, { attribution })
 async function show_me() {
     // Henter stat fra søkefelt
     let place = document.getElementById("searchbar").value;
+
     // Link til API funksjonen for å søke opp breweris i ønsket stat.
     api_url = 'https://api.openbrewerydb.org/breweries?by_state=' + place;
-    
+
     // fetch() kjører API funksjonen. Funskjonen gir et Promise tilbake. Denne bruker vi til å vente på at 
-    // funksjonen er ferdig.
+    // funksjonen er ferdig. Får tilbake et Promise
     let response = await fetch(api_url);
 
     // Her venter vi på at funksjonen skal bli ferdig. Når den er ferdig ber vi om å få resultat i JSON
     let data = await response.json();
-
-    console.log(data);
-    //
+    
+    // Sletter kartet
     map.eachLayer(function (layer) {
         if (layer instanceof L.Marker) {
             map.removeLayer(layer)
@@ -31,8 +31,7 @@ async function show_me() {
 
     // Nå har vi fått svarer fra serveren i format av JSON og går igjennom alle breweries og legger på kartet
     data.forEach(element => {
-        //console.log(element.latitude);
-        //console.log(element.longitude);
+ 
         // Først sjekker vi om breweriet har longitude og latitude, ellers så kræsjer det
         if (element.longitude != null && element.latitude != null) {
             // Her lager vi en ny markør på kartet
@@ -43,7 +42,6 @@ async function show_me() {
             <h3>City: </h3>${element.city}<br> 
             <h3>Address: </h3>${element.address_1}<br>
             <a href="${element.website_url}">${element.website_url}</a>`).openPopup();
-            
         }
     });
 }
